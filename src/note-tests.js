@@ -22,6 +22,7 @@ var check = {
 
 };
 
+
 (function(exports) {
 
 function testNoteHasText() {
@@ -39,10 +40,45 @@ exports.testNoteHasText = testNoteHasText;
   function testCreateNote() {
 
     var noteList = new NoteList();
-    notelist.createNote("Howdy!");
-
-
+    noteList.createNote("Howdy!");
+    assert.toEqual(noteList._notes.length, 1);
   }
 
+    exports.testCreateNote = testCreateNote;
 
-});
+
+
+
+})(this);
+
+
+(function (exports) {
+
+  function testShowNotes() {
+
+    var noteList = new NoteList();
+
+    noteList.createNote("Evening");
+    noteList.createNote("Yo");
+
+    assert.toEqual(noteList.showNotes().length, 2);
+  }
+
+  exports.testShowNotes = testShowNotes;
+
+})(this);
+
+(function (exports) {
+  function testViewNotes(){
+
+    var noteList = new NoteList();
+    noteList.createNote("Hey Sean");
+    noteList.createNote("Hey Alex");
+    var noteListView = new NoteListView(noteList);
+
+    assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>")
+  }
+
+  exports.testViewNotes = testViewNotes;
+
+})(this);
