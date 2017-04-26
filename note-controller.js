@@ -1,4 +1,4 @@
-A(function (exports) {
+(function (exports) {
 
   function NoteController(noteList) {
     this.noteList = noteList;

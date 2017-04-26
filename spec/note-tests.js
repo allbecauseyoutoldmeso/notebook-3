@@ -58,9 +58,47 @@ var check = {
     assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>")
   }
 
+  function testNewNoteController(){
+    function NoteListDouble(){};
+
+    var noteListDouble = new NoteListDouble();
+    var noteController = new NoteController(noteListDouble);
+
+    assert.toEqual(noteController.noteList, noteListDouble);
+  }
+
+  function testRender(){
+
+    function NoteDouble(){};
+    function NoteListDouble(){};
+
+    NoteDouble.prototype = {
+      showText: function() {
+        return "Hello";
+      }
+    };
+
+    var noteDouble = new NoteDouble();
+
+    NoteListDouble.prototype = {
+      showNotes: function() {
+        return [noteDouble];
+      }
+    }
+
+    var noteListDouble = new NoteListDouble();
+    var noteController = new NoteController(noteListDouble);
+    noteController.render();
+
+    assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>")
+
+  }
+
   testNoteHasText();
   testCreateNote();
   testShowNotes();
   testViewNotes();
+  testNewNoteController();
+  testRender();
 
 })(this);
