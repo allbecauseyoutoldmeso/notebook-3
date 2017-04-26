@@ -13,17 +13,17 @@
 
   NoteController.prototype.listNotes = function() {
 
-    var display = new NoteListView(this.noteList)
+    var display = new NoteListView(this.noteList);
 
       return display.viewNotes();
-  }
+  };
 
   NoteController.prototype.render = function() {
 
     var element = document.getElementById('app');
     element.innerHTML = this.listNotes();
 
-  }
+  };
 
   exports.NoteController = NoteController;
 

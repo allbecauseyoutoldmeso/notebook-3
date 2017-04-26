@@ -27,7 +27,7 @@ var check = {
 
   function testNoteHasText() {
 
-    var note = new Note("Hello!");
+    var note = new Note(0, "Hello!");
     assert.toEqual(note.showText(), "Hello!");
   }
 
@@ -124,7 +124,14 @@ var check = {
     assert.toEqual(noteListView.viewNotes(), '<ul><li><div>This is a very long </div></li></ul>');
   }
 
+  function testNoteId() {
 
+    var noteList = new NoteList();
+    noteList.createNote('tralala');
+    noteList.createNote('blablabla');
+    assert.toEqual(noteList.showNotes()[1].showId(), 1);
+
+  }
 
   testSingleNoteView();
   testNoteHasText();
@@ -134,5 +141,6 @@ var check = {
   testNewNoteController();
   testRender();
   testNoteListViewLength();
+  testNoteId();
 
 })(this);
