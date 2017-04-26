@@ -55,11 +55,11 @@ var check = {
     noteList.createNote("Hey Alex");
     var noteListView = new NoteListView(noteList);
 
-    assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>")
+    assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>");
   }
 
   function testNewNoteController(){
-    function NoteListDouble(){};
+    function NoteListDouble(){}
 
     var noteListDouble = new NoteListDouble();
     var noteController = new NoteController(noteListDouble);
@@ -69,8 +69,8 @@ var check = {
 
   function testRender(){
 
-    function NoteDouble(){};
-    function NoteListDouble(){};
+    function NoteDouble(){}
+    function NoteListDouble(){}
     NoteDouble.prototype = {
       showText: function() {
         return "Hello";
@@ -81,25 +81,47 @@ var check = {
       showNotes: function() {
         return [noteDouble];
       }
-    }
+    };
     var noteListDouble = new NoteListDouble();
     var noteController = new NoteController(noteListDouble);
     noteController.render();
-    assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>")
+    assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>");
   }
 
   function testSingleNoteView() {
 
-    function NoteDouble(){};
+    function NoteDouble(){}
     NoteDouble.prototype = {
       showText: function() {
         return "Hello";
       }
     };
     var noteDouble = new NoteDouble();
-    var singleNoteView = new SingleNoteView(noteDouble)
-    assert.toEqual(singleNoteView.displayNote(), "<div>Hello</div>" )
+    var singleNoteView = new SingleNoteView(noteDouble);
+    assert.toEqual(singleNoteView.displayNote(), "<div>Hello</div>" );
 
+  }
+
+  function testNoteListViewLength(){
+    function NoteDouble() {}
+    NoteDouble.prototype = {
+      showText: function() {
+        return "This is a very long lengthy sentence I think, well I hope.";
+      }
+    };
+    var noteDouble = new NoteDouble();
+
+    function NoteListDouble() {}
+    NoteListDouble.prototype = {
+      showNotes: function() {
+        return [noteDouble];
+      }
+    };
+
+    var noteListDouble = new NoteListDouble();
+    var noteListView = new NoteListView(noteListDouble);
+
+    assert.toEqual(noteListView.viewNotes(), '<ul><li><div>This is a very long </div></li></ul>');
   }
 
 
@@ -111,5 +133,6 @@ var check = {
   testViewNotes();
   testNewNoteController();
   testRender();
+  testNoteListViewLength();
 
 })(this);

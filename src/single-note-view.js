@@ -5,7 +5,7 @@
   }
 
   SingleNoteView.prototype.displayNote = function() {
-    return "<div>" + this._note.showText() + "</div>"
+    return "<div>" + this._note.showText() + "</div>";
   };
 
   exports.SingleNoteView = SingleNoteView;
