@@ -25,17 +25,11 @@ var check = {
 
 (function(exports) {
 
-function testNoteHasText() {
+  function testNoteHasText() {
 
-  var note = new Note("Hello!");
-  assert.toEqual(note.showText(), "Hello!");
-}
-
-exports.testNoteHasText = testNoteHasText;
-
-})(this);
-
-(function(exports) {
+    var note = new Note("Hello!");
+    assert.toEqual(note.showText(), "Hello!");
+  }
 
   function testCreateNote() {
 
@@ -43,16 +37,6 @@ exports.testNoteHasText = testNoteHasText;
     noteList.createNote("Howdy!");
     assert.toEqual(noteList._notes.length, 1);
   }
-
-    exports.testCreateNote = testCreateNote;
-
-
-
-
-})(this);
-
-
-(function (exports) {
 
   function testShowNotes() {
 
@@ -64,11 +48,6 @@ exports.testNoteHasText = testNoteHasText;
     assert.toEqual(noteList.showNotes().length, 2);
   }
 
-  exports.testShowNotes = testShowNotes;
-
-})(this);
-
-(function (exports) {
   function testViewNotes(){
 
     var noteList = new NoteList();
@@ -79,6 +58,9 @@ exports.testNoteHasText = testNoteHasText;
     assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>")
   }
 
-  exports.testViewNotes = testViewNotes;
+  testNoteHasText();
+  testCreateNote();
+  testShowNotes();
+  testViewNotes();
 
 })(this);
