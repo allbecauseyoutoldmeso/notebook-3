@@ -71,29 +71,40 @@ var check = {
 
     function NoteDouble(){};
     function NoteListDouble(){};
-
     NoteDouble.prototype = {
       showText: function() {
         return "Hello";
       }
     };
-
     var noteDouble = new NoteDouble();
-
     NoteListDouble.prototype = {
       showNotes: function() {
         return [noteDouble];
       }
     }
-
     var noteListDouble = new NoteListDouble();
     var noteController = new NoteController(noteListDouble);
     noteController.render();
-
     assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>")
+  }
+
+  function testSingleNoteView() {
+
+    function NoteDouble(){};
+    NoteDouble.prototype = {
+      showText: function() {
+        return "Hello";
+      }
+    };
+    var noteDouble = new NoteDouble();
+    var singleNoteView = new SingleNoteView(noteDouble)
+    assert.toEqual(singleNoteView.displayNote(), "<div>Hello</div>" )
 
   }
 
+
+
+  testSingleNoteView();
   testNoteHasText();
   testCreateNote();
   testShowNotes();
