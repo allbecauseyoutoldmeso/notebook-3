@@ -27,7 +27,7 @@
 
   NoteController.prototype.listNote = function(index) {
     var display = new SingleNoteView(this.noteList.showNotes()[index]);
-    return display.displayNote()
+    return display.displayNote();
   };
 
 
@@ -35,6 +35,7 @@
     var element = document.getElementById('note');
     element.innerHTML = this.listNote(index);
   };
+
 
   exports.NoteController = NoteController;
 
