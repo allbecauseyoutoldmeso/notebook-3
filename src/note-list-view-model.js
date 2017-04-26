@@ -15,3 +15,10 @@
   exports.NoteListView = NoteListView;
 
 })(this);
+
+
+// string = '<ul>'
+// this._noteList.forEach(function(note) {
+//   string = string +  "<li><div><a href='/note/:" + note.getId() + "'>" + note.showText().substring(0,20) + "</a></div></li></ul>"
+// })
+// return string + '</ul>'

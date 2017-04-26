@@ -4,12 +4,12 @@
 
 noteList = new NoteList();
 noteController = new NoteController(noteList);
-noteController.addNote('this is a note!');
-noteController.addNote('so is this!');
-noteController.addNote('how thrilling!');
+// noteController.addNote('this is a note!');
+// noteController.addNote('so is this!');
+// noteController.addNote('how thrilling!');
 
 function changeContent () {
-    noteController.render();
+  noteController.renderAll();
 }
 
 window.onload = changeContent;

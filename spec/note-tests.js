@@ -48,15 +48,15 @@ var check = {
     assert.toEqual(noteList.showNotes().length, 2);
   }
 
-  function testViewNotes(){
-
-    var noteList = new NoteList();
-    noteList.createNote("Hey Sean");
-    noteList.createNote("Hey Alex");
-    var noteListView = new NoteListView(noteList);
-
-    assert.toEqual(noteListView.viewNotes(), "<ul><li><div>Hey Sean</div></li><li><div>Hey Alex</div></li></ul>");
-  }
+  // function testViewNotes(){
+  //
+  //   var noteList = new NoteList();
+  //   noteList.createNote("Hey Sean");
+  //   noteList.createNote("Hey Alex");
+  //   var noteListView = new NoteListView(noteList);
+  //
+  //   assert.toEqual(noteListView.viewNotes(), "<ul><li><div><a href='#0'>Hey Sean</a></div></li><li><div><a href='#1'>Hey Alex</a></div></li></ul>");
+  // }
 
   function testNewNoteController(){
     function NoteListDouble(){}
@@ -84,7 +84,7 @@ var check = {
     };
     var noteListDouble = new NoteListDouble();
     var noteController = new NoteController(noteListDouble);
-    noteController.render();
+    noteController.renderAll();
     assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>");
   }
 
@@ -133,11 +133,33 @@ var check = {
 
   }
 
+  function testLoadSingleNote() {
+    function NoteDouble(){}
+    function NoteListDouble(){}
+    NoteDouble.prototype = {
+      showText: function() {
+        return "This is a very long lengthy sentence I think, well I hope.";
+      }
+    };
+    var noteDouble = new NoteDouble();
+    NoteListDouble.prototype = {
+      showNotes: function() {
+        return [noteDouble, noteDouble];
+      }
+    };
+    var noteListDouble = new NoteListDouble();
+    noteController = new NoteController(noteListDouble);
+    noteController.renderSingle(0);
+    assert.toEqual(document.getElementById('note').innerHTML, "<div>This is a very long lengthy sentence I think, well I hope.</div>");
+  }
+
+
+  testLoadSingleNote();
   testSingleNoteView();
   testNoteHasText();
   testCreateNote();
   testShowNotes();
-  testViewNotes();
+  // testViewNotes();
   testNewNoteController();
   testRender();
   testNoteListViewLength();
