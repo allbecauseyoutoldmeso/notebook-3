@@ -27,6 +27,7 @@ function makeUrlChange() {
 function showCurrentNote() {
   noteController.renderSingle(getNoteFromUrl(window.location));
 }
+
 function getNoteFromUrl(location) {
   return location.hash.split('#')[1];
 }
