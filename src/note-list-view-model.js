@@ -7,9 +7,9 @@
     var notes = this._noteList.showNotes();
     var noteText = [];
     for(var i = 0; i < notes.length; i++) {
-      noteText.push(notes[i].showText().substring(0,20));
+      noteText.push("<a href='#" + i + "'>" + notes[i].showText().substring(0,20));
     }
-    return "<ul><li><div>" + noteText.join("</div></li><li><div>") + "</div></li></ul>";
+    return "<ul><li><div>" + noteText.join("</a></div></li><li><div>") + "</a></div></li></ul>";
   };
 
   exports.NoteListView = NoteListView;
@@ -19,6 +19,6 @@
 
 // string = '<ul>'
 // this._noteList.forEach(function(note) {
-//   string = string +  "<li><div><a href='/note/:" + note.getId() + "'>" + note.showText().substring(0,20) + "</a></div></li></ul>"
+//   string = string +  "<li><div><a href='#" + note.getId() + "'>" + note.showText().substring(0,20) + "</a></div></li></ul>"
 // })
 // return string + '</ul>'

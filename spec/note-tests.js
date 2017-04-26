@@ -48,15 +48,15 @@ var check = {
     assert.toEqual(noteList.showNotes().length, 2);
   }
 
-  // function testViewNotes(){
-  //
-  //   var noteList = new NoteList();
-  //   noteList.createNote("Hey Sean");
-  //   noteList.createNote("Hey Alex");
-  //   var noteListView = new NoteListView(noteList);
-  //
-  //   assert.toEqual(noteListView.viewNotes(), "<ul><li><div><a href='#0'>Hey Sean</a></div></li><li><div><a href='#1'>Hey Alex</a></div></li></ul>");
-  // }
+  function testViewNotes(){
+
+    var noteList = new NoteList();
+    noteList.createNote("Hey Sean");
+    noteList.createNote("Hey Alex");
+    var noteListView = new NoteListView(noteList);
+
+    assert.toEqual(noteListView.viewNotes(), "<ul><li><div><a href='#0'>Hey Sean</a></div></li><li><div><a href='#1'>Hey Alex</a></div></li></ul>");
+  }
 
   function testNewNoteController(){
     function NoteListDouble(){}
@@ -85,7 +85,7 @@ var check = {
     var noteListDouble = new NoteListDouble();
     var noteController = new NoteController(noteListDouble);
     noteController.renderAll();
-    assert.toEqual(document.getElementById('app').innerHTML, "<ul><li><div>Hello</div></li></ul>");
+    assert.toEqual(document.getElementById('app').innerHTML, '<ul><li><div><a href="#0">Hello</a></div></li></ul>');
   }
 
   function testSingleNoteView() {
@@ -121,7 +121,7 @@ var check = {
     var noteListDouble = new NoteListDouble();
     var noteListView = new NoteListView(noteListDouble);
 
-    assert.toEqual(noteListView.viewNotes(), '<ul><li><div>This is a very long </div></li></ul>');
+    assert.toEqual(noteListView.viewNotes(), "<ul><li><div><a href='#0'>This is a very long </a></div></li></ul>");
   }
 
   function testNoteId() {
@@ -159,7 +159,7 @@ var check = {
   testNoteHasText();
   testCreateNote();
   testShowNotes();
-  // testViewNotes();
+  testViewNotes();
   testNewNoteController();
   testRender();
   testNoteListViewLength();
